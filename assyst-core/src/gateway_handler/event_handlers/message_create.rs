@@ -25,6 +25,7 @@ pub async fn handle(assyst: ThreadSafeAssyst, MessageCreate(message): MessageCre
                 referenced_message: message.referenced_message.as_deref(),
                 sticker: message.sticker_items.first(),
                 channel_id: message.channel_id.get(),
+                guild_id: message.guild_id.map(|x| x.get()),
                 embed: message.embeds.first(),
                 processing_time_start: Instant::now(),
             };

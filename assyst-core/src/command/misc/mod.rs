@@ -3,7 +3,7 @@ use std::time::{Duration, Instant};
 
 use crate::command::Availability;
 
-use super::arguments::{self, Image, ImageUrl, Rest, Time, Word};
+use super::arguments::{Image, ImageUrl, Rest, Time, Word};
 use super::registry::get_or_init_commands;
 use super::{Category, Command, CommandCtxt};
 

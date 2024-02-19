@@ -44,6 +44,7 @@ use self::source::Source;
 
 pub mod arguments;
 pub mod errors;
+pub mod fun;
 pub mod messagebuilder;
 pub mod misc;
 pub mod registry;
@@ -148,6 +149,8 @@ pub struct CommandData<'a> {
     pub source: Source,
     pub message_id: u64,
     pub channel_id: u64,
+    /// `None` in a DM.
+    pub guild_id: Option<u64>,
     /// `None` in a slash command
     pub attachment: Option<&'a Attachment>,
     /// `None` in a slash command
@@ -174,6 +177,7 @@ impl<'a> CommandCtxt<'a> {
 
     pub async fn reply(&self, builder: impl Into<MessageBuilder>) -> anyhow::Result<()> {
         let builder = builder.into();
+
         match self.data.source {
             Source::Gateway => gateway_reply::reply(self, builder).await,
         }
